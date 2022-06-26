@@ -1,24 +1,24 @@
-const { Model } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 class UserTicket extends Model {
   static init(connection) {
     super.init({
       user_id: {
-        type: Sequelize.UUID,
+        type: DataTypes.UUID,
         references: {
           model: 'users',
           key: 'id'
         },
       },
       ticket_id: {
-        type: Sequelize.UUID,
+        type: DataTypes.UUID,
         references: {
           model: 'tickets',
           key: 'id'
         },
       },
       toSell: {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
         validate: {
           notEmpty: true,

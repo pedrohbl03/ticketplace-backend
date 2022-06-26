@@ -1,10 +1,10 @@
-const { Model } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 class User extends Model {
   static init (connection) {
     super.init({
       name: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -15,7 +15,7 @@ class User extends Model {
         }
       },
       lastName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -26,7 +26,7 @@ class User extends Model {
         }
       },
       phoneNumber: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -37,7 +37,7 @@ class User extends Model {
         }
       },
       dateOfBirth: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -48,7 +48,7 @@ class User extends Model {
         }
       },
       email: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -59,7 +59,7 @@ class User extends Model {
         }
       },
       password: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,

@@ -1,16 +1,16 @@
-const { Model } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 class Ticket extends Model {
   static init(connection) {
     super.init({
       id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false
       },
       address: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -21,7 +21,7 @@ class Ticket extends Model {
         },
       },
       date: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -32,7 +32,7 @@ class Ticket extends Model {
         },
       },
       time: {
-        type: Sequelize.TIME,
+        type: DataTypes.TIME,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -43,7 +43,7 @@ class Ticket extends Model {
         },
       },
       value: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -54,7 +54,7 @@ class Ticket extends Model {
         },
       },
       description: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,

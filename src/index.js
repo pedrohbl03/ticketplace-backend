@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const routes = require('./routes/v1/index');
+
+require('./database');
+
 const PORT = 3333;
 
 const app = express();
