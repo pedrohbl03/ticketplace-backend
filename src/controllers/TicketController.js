@@ -31,13 +31,6 @@ const deleteTicketById = async (req, res) => {
   return res.status(200).send({ ticket });
 }
 
-
-
-
-
-
-
-
 module.exports = {
   createTicket,
   getAllTickets,

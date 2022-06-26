@@ -45,7 +45,6 @@ const updateUserTicketById = async (req, res) => {
   return res.status(200).send({ userTicket });
 }
 
-
 module.exports = {
   getUserTicketsToSell,
   createUserTicket,
