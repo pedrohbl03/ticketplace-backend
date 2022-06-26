@@ -5,17 +5,9 @@ class UserTicket extends Model {
     super.init({
       user_id: {
         type: DataTypes.UUID,
-        references: {
-          model: 'users',
-          key: 'id'
-        },
       },
       ticket_id: {
         type: DataTypes.UUID,
-        references: {
-          model: 'tickets',
-          key: 'id'
-        },
       },
       toSell: {
         type: DataTypes.BOOLEAN,
