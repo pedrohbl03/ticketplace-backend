@@ -29,13 +29,15 @@ class UserTicket extends Model {
   static associate(models) {
     this.belongsTo(models.User, {
       foreignKey: 'user_id',
+      as: 'user_id',
       onDelete: 'CASCADE',
     });
     this.belongsTo(models.Ticket, {
       foreignKey: 'ticket_id',
+      as: 'ticket_id',
       onDelete: 'CASCADE',
     });
-    
+
   }
 }
 
