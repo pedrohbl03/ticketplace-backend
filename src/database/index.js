@@ -18,6 +18,4 @@ User.init(connection);
 Ticket.init(connection);
 UserTickets.init(connection);
 
-UserTickets.associate(connection.models);
-
 module.exports = connection
