@@ -3,12 +3,6 @@ const { Model, DataTypes } = require('sequelize');
 class Ticket extends Model {
   static init(connection) {
     super.init({
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-        allowNull: false
-      },
       address: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -1,34 +1,34 @@
 const HTTP_STATUS = require('http-status');
 const Ticket = require('../model/User');
 
-const createTicket = (req, res) => {
-  const ticket = Ticket.create(req.body);
+const createTicket = async (req, res) => {
+  const ticket = await Ticket.create(req.body);
 
-  return res.send(HTTP_STATUS[201], ticket);
+  return res.status(200).send({ ticket });
 }
 
-const getAllTickets = (req, res) => {
-  const tickets = Ticket.findAll();
+const getAllTickets = async (req, res) => {
+  const tickets = await Ticket.findAll();
 
-  return res.send(HTTP_STATUS[200], tickets);
+  return res.status(200).send({ tickets });
 }
 
-const getTicketById = (req, res) => {
-  const ticket = Ticket.findById(req.params.ticketId);
+const getTicketById = async (req, res) => {
+  const ticket = await Ticket.findById(req.params.ticketId);
 
-  return res.send(HTTP_STATUS[200], ticket);
+  return res.status(200).send({ ticket });
 }
 
-const updateTicketById = (req, res) => {
-  const ticket = Ticket.update(req.params.ticketId, req.body);
+const updateTicketById = async (req, res) => {
+  const ticket = await Ticket.update(req.params.ticketId, req.body);
 
-  return res.send(HTTP_STATUS[200], ticket);
+  return res.status(200).send({ ticket });
 }
 
-const deleteTicketById = (req, res) => {
-  const ticket = Ticket.delete(req.params.ticketId);
+const deleteTicketById = async (req, res) => {
+  const ticket = await Ticket.delete(req.params.ticketId);
 
-  return res.send(HTTP_STATUS[200], ticket);
+  return res.status(200).send({ ticket });
 }
 
 

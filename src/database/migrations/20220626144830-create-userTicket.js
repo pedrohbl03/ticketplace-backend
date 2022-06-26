@@ -15,6 +15,8 @@ module.exports = {
           model: 'users',
           key: 'id'
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       ticket_id: {
         type: Sequelize.UUID,
@@ -22,6 +24,8 @@ module.exports = {
           model: 'tickets',
           key: 'id'
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       toSell: {
         type: Sequelize.BOOLEAN,

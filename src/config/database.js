@@ -3,7 +3,7 @@ module.exports = {
   host: 'localhost',
   username: 'root',
   password: 'Goltam-123',
-  database: 'ticketplaceTeste',
+  database: 'ticketplace',
   define: {
     timestamp: true,
   }

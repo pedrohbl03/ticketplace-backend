@@ -3,71 +3,37 @@ const { Model, DataTypes } = require('sequelize');
 class User extends Model {
   static init (connection) {
     super.init({
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-          lenght: {
-            min: 3,
-            max: 255
-          }
-        }
       },
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-          lenght: {
-            min: 3,
-            max: 255
-          }
-        }
       },
       phoneNumber: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-          lenght: {
-            min: 3,
-            max: 255
-          }
-        }
       },
       dateOfBirth: {
         type: DataTypes.DATE,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-          lenght: {
-            min: 3,
-            max: 255
-          }
-        }
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: true,
-          lenght: {
-            min: 3,
-            max: 255
-          }
-        }
+          isEmail:true
+        },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-          lenght: {
-            min: 3,
-            max: 255
-          }
-        }
       }
     }, {
       sequelize: connection,

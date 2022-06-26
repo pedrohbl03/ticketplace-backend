@@ -1,48 +1,48 @@
 const HTTP_STATUS = require('http-status');
 const UserTickets = require('../model/UserTickets');
 
-const getUserTicketsToSell = (req, res) => {
-  const userTickets = UserTickets.findAll({
+const getUserTicketsToSell = async (req, res) => {
+  const userTickets = await UserTickets.findAll({
     where: {
       userId: req.params.userId,
       toSell: true
     }
   });
 
-  return res.send(HTTP_STATUS[200], userTickets);
+  return res.status(200).send({ userTickets });
 }
 
-const createUserTicket = (req, res) => {
+const createUserTicket = async (req, res) => {
 
   const newTicket = {
     ...req.body,
     userId: req.params.userId
   }
 
-  const userTicket = UserTickets.create(newTicket);
+  const userTicket = await UserTickets.create(newTicket);
 
-  return res.send(HTTP_STATUS[201], userTicket);
+  return res.status(200).send({ userTicket });
 }
 
-const getUserTicketsBought = (req, res) => {
-  const userTickets = UserTickets.findAll({
+const getUserTicketsBought = async (req, res) => {
+  const userTickets = await UserTickets.findAll({
     where: {
       userId: req.params.userId,
       toSell: false
     }
   });
 
-  return res.send(HTTP_STATUS[200], userTickets);
+  return res.status(200).send({ userTickets });
 }
 
-const updateUserTicketById = (req, res) => {
-  const userTicket = UserTickets.update(req.body, {
+const updateUserTicketById = async (req, res) => {
+  const userTicket = await UserTickets.update(req.body, {
     where: {
       id: req.params.userTicketsId
     }
   });
 
-  return res.send(HTTP_STATUS[200], userTicket);
+  return res.status(200).send({ userTicket });
 }
 
 
