@@ -1,8 +1,10 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const cors = require('cors');
 const routes = require('./routes/v1/index');
 
 require('./database');
+dotenv.config();
 
 const PORT = 3333;
 

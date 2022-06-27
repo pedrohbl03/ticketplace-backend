@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv')
 const jwt = require('jsonwebtoken');
 const User = require('../model/User');
-const Auth = require('../model/Auth');
 
 
 
@@ -37,16 +37,39 @@ const loginUser = async (req, res) => {
     return res.status(400).send({ error: 'Invalid password' });
   }
 
-
-  // TODO: CREATE A JWT TOKEN - AND SAVE IN DATABASE
-/*   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: 86400 // expires in 24 hours
-  }); */
+  });
 
-  return res.status(200).send({ msg: 'User logged in', data: { name: user.name, lastName: user.lastName, email: user.email }, token });
+  return res.status(200).send({
+    msg: 'User logged in',
+    data: {
+      id: user.id,
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email,
+    },
+    token
+  });
 }
 
 const logoutUser = async (req, res) => {
+  const { token, userId } = req.body;
+
+  if (!token) {
+    return res.status(400).send({ error: 'No token provided' });
+  }
+
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  if (!decoded) {
+    return res.status(400).send({ error: 'Invalid token' });
+  }
+
+  if (decoded.id !== userId) {
+    return res.status(400).send({ error: 'Invalid token' });
+  }
+
   return res.status(200).send({ msg: 'User logged out' });
 }
 

@@ -43,7 +43,7 @@ module.exports = {
         },
       },
       value: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -76,8 +76,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-
     await queryInterface.dropTable('tickets');
-    
   }
 };
