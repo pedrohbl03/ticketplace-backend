@@ -16,7 +16,7 @@ class Ticket extends Model {
         allowNull: false,
       },
       value: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
       description: {
