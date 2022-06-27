@@ -4,8 +4,6 @@ const { auth } = require('../../middleware/auth');
 
 const router = express.Router();
 
-router.use(auth);
-
 router
   .route('/login')
   .post(AuthController.loginUser)
