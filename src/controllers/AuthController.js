@@ -6,7 +6,7 @@ const User = require('../model/User');
 
 
 const createUser = async (req, res) => {
-  let { name, lastName, phoneNumber, dateOfBirth, email, password } = req.body;
+  let { name, lastName, phoneNumber, email, password } = req.body;
 
   if (await User.findOne({ where: { email: req.body.email } })) {
     return res.status(400).send({ error: 'Email already exists' });
@@ -16,7 +16,6 @@ const createUser = async (req, res) => {
     name,
     lastName,
     phoneNumber,
-    dateOfBirth,
     email,
     password: await bcrypt.hash(password, 8)
   });

@@ -20,10 +20,6 @@ class User extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      dateOfBirth: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
