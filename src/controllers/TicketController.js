@@ -1,4 +1,3 @@
-const HTTP_STATUS = require('http-status');
 const Ticket = require('../model/User');
 
 const createTicket = async (req, res) => {

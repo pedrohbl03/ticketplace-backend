@@ -1,4 +1,3 @@
-const HTTP_STATUS = require('http-status');
 const UserTickets = require('../model/UserTickets');
 
 const getUserTicketsToSell = async (req, res) => {
@@ -13,7 +12,6 @@ const getUserTicketsToSell = async (req, res) => {
 }
 
 const createUserTicket = async (req, res) => {
-
   const newTicket = {
     ...req.body,
     userId: req.params.userId
