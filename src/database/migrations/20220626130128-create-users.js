@@ -42,17 +42,6 @@ module.exports = {
           },
         },
       },
-      dateOfBirth: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-          lenght: {
-            min: 3,
-            max: 255
-          },
-        },
-      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,

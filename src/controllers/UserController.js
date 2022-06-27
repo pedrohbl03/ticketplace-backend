@@ -2,7 +2,6 @@ const User = require('../model/User');
 
 const getAllUsers = async (req, res) => {
   const users = await User.findAll();
-
   if (users.length === 0) {
     return res.status(404).send({ error: 'No users found' });
   }
