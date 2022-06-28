@@ -17,8 +17,8 @@ module.exports = {
           lenght: {
             min: 3,
             max: 255
-          },
-        },
+          }
+        }
       },
       date: {
         type: Sequelize.DATE,
