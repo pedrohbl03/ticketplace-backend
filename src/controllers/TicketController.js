@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const Ticket = require('../model/Ticket');
 
 const createTicket = async (req, res) => {
@@ -15,6 +16,18 @@ const createTicket = async (req, res) => {
 
 const getAllTickets = async (req, res) => {
   const tickets = await Ticket.findAll();
+
+  return res.status(200).send({ tickets });
+}
+
+const getTicketsByName = async (req, res) => {
+  const tickets = await Ticket.findAll({
+    where: {
+      address: {
+        [Op.substring]: req.params.search
+      }
+    }
+  });
 
   return res.status(200).send({ tickets });
 }
@@ -40,6 +53,7 @@ const deleteTicketById = async (req, res) => {
 module.exports = {
   createTicket,
   getAllTickets,
+  getTicketsByName,
   getTicketById,
   updateTicketById,
   deleteTicketById

@@ -16,4 +16,8 @@ router
   .patch(TicketController.updateTicketById)
   .delete(TicketController.deleteTicketById);
 
+router
+  .route('/search/:search')
+  .get(TicketController.getTicketsByName);
+
 module.exports = router;
