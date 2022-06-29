@@ -2,7 +2,7 @@ module.exports = {
   dialect: 'mysql',
   host: 'localhost',
   username: 'root',
-  password: 'Goltam-123',
+  password: '12345678',
   database: 'ticketplace',
   define: {
     timestamp: true,

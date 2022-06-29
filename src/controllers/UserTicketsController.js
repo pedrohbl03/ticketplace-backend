@@ -26,11 +26,11 @@ const createUserTicket = async (req, res) => {
 }
 
 const getUserTicketsBought = async (req, res) => {
-
+  userId = req.params.userId
   const tickets = await Ticket.findAll({
     include: [{
       model: UserTickets,
-      where: ['UserTicket.ticket_id = Ticket.id']
+      where: [`UserTicket.user_id = ${userId}` , 'UserTicket.toSell = false'],
     }]
   });
 

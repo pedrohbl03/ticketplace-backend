@@ -18,6 +18,11 @@ class UserTicket extends Model {
       // TODO: Create associated columns for user_id and ticket_id
     });
   }
+
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey:  'user_id', as: 'user'})
+    this.belongsTo(models.Ticket, {foreignKey: 'ticket_id', as: 'ticket'})
+  }
 }
 
 module.exports = UserTicket

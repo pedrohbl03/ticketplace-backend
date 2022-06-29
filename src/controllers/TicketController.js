@@ -1,8 +1,10 @@
 const { Op } = require("sequelize");
 const Ticket = require('../model/Ticket');
+const UserTicketsController = require('./UserTicketsController');
+
 
 const createTicket = async (req, res) => {
-  const { address, date, time, value, description, userId } = req.body;
+  const { address, date, ticketImage, time, value, description, userId } = req.body;
   const ticket = await Ticket.create({
     address,
     ticketImage,
@@ -10,6 +12,8 @@ const createTicket = async (req, res) => {
     time,
     value,
     description
+  }).then(data => {
+    UserTicketsController.createUserTicket(data.ticket)
   });
 
   return res.status(200).send({ ticket, userId });

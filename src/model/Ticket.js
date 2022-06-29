@@ -36,6 +36,10 @@ class Ticket extends Model {
       sequelize: connection,
     });
   }
+
+  static associate(models) {
+    this.hasOne(models.address, {{foreignKey: 'ticket_id', as: 'userTicket'}})
+  }
 }
 
 module.exports = Ticket
