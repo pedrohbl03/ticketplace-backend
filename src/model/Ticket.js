@@ -38,7 +38,7 @@ class Ticket extends Model {
   }
 
   static associate(models) {
-    this.hasOne(models.address, {{foreignKey: 'ticket_id', as: 'userTicket'}})
+    this.hasOne(models.address, {foreignKey: 'ticket_id', as: 'userTicket'})
   }
 }
 
