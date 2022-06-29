@@ -8,6 +8,10 @@ class Ticket extends Model {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+      ticketImage: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       address: {
         type: DataTypes.STRING,
         allowNull: false,
