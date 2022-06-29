@@ -5,7 +5,7 @@ const createTicket = async (req, res) => {
   const { address, date, time, value, description, userId } = req.body;
   const ticket = await Ticket.create({
     address,
-    ticketImage: 'loremipsum',
+    ticketImage,
     date,
     time,
     value,
