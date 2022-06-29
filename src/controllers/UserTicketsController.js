@@ -1,4 +1,7 @@
+const Ticket = require('../model/Ticket')
 const UserTickets = require('../model/UserTickets');
+
+
 
 const getUserTicketsToSell = async (req, res) => {
   const userTickets = await UserTickets.findAll({
@@ -23,14 +26,15 @@ const createUserTicket = async (req, res) => {
 }
 
 const getUserTicketsBought = async (req, res) => {
-  const userTickets = await UserTickets.findAll({
-    where: {
-      userId: req.params.userId,
-      toSell: false
-    }
+
+  const tickets = await Ticket.findAll({
+    include: [{
+      model: UserTickets,
+      where: ['UserTicket.ticket_id = Ticket.id']
+    }]
   });
 
-  return res.status(200).send({ userTickets });
+  return res.status(200).send({ tickets });
 }
 
 const updateUserTicketById = async (req, res) => {
