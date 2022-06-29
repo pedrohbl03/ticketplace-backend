@@ -9,13 +9,13 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
-/*       ticketImage: {
+      ticketImage: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
           notEmpty: true
         }
-      }, */
+      }, 
       address: {
         type: Sequelize.STRING,
         allowNull: false,
