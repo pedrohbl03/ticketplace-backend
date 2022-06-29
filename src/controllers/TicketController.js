@@ -4,6 +4,7 @@ const createTicket = async (req, res) => {
   const { address, date, time, value, description, userId } = req.body;
   const ticket = await Ticket.create({
     address,
+    ticketImage,
     date,
     time,
     value,
@@ -35,8 +36,8 @@ const deleteTicketById = async (req, res) => {
   const ticket = await Ticket.delete(req.params.ticketId);
 
   return res.status(200).send({ ticket });
-}
-
+}  
+    
 module.exports = {
   createTicket,
   getAllTickets,

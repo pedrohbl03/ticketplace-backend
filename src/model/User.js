@@ -8,6 +8,10 @@ class User extends Model {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+      profileImage: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
