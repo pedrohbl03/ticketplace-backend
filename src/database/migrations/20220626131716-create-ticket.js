@@ -15,11 +15,7 @@ module.exports = {
         validate: {
           notEmpty: true
         }
-<<<<<<< HEAD
       },
-=======
-      }, 
->>>>>>> 217a1a04de05cc967e4af0d6ea6e55eb7ddfadab
       address: {
         type: Sequelize.STRING,
         allowNull: false,
