@@ -16,8 +16,8 @@ class Ticket extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      category: {
-        type: DataTypes.STRING,
+      categoryId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       address: {
@@ -46,7 +46,7 @@ class Ticket extends Model {
   }
 
   static associate(models) {
-    this.hasOne(models.address, {foreignKey: 'ticket_id', as: 'userTicket'})
+    this.hasOne(models.UserTicket, { foreignKey: 'ticket_id', as: 'ticket_id'});
   }
 }
 

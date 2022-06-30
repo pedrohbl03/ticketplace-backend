@@ -5,16 +5,19 @@ const UserTickets = require('../model/UserTickets');
 
 
 const createTicket = async (req, res) => {
-  const { address, date, ticketImage, time, value, description, userId } = req.body;
+  const { eventName, address, categoryId, date, ticketImage, time, value, description, userId } = req.body;
+  console.log(req.body)
   const { ticket, userTicket } = await Ticket.create({
+    eventName,
     address,
+    categoryId,
     ticketImage,
     date,
     time,
     value,
     description
   }).then(async (ticket) => {
-    newTicket = {
+    const newTicket = {
       ticket_id: ticket.id,
       user_id: userId,
       toSell: true
@@ -22,7 +25,7 @@ const createTicket = async (req, res) => {
     const userTicket = await UserTickets.create(newTicket);
 
     return { ticket, userTicket }
-  });
+  });    
 
   return res.status(200).send({ ticket, userTicket, userId });
 }

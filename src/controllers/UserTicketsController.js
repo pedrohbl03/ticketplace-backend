@@ -1,20 +1,26 @@
 const Ticket = require('../model/Ticket')
+const User = require('../model/User')
 const UserTickets = require('../model/UserTickets');
 
 
-
 const getUserTicketsToSell = async (req, res) => {
-  const userTickets = await Ticket.findAll({
-    include: [{
-      model: UserTickets,
-      where: {
-        user_id: req.params.userId,
-        toSell: true
-      }
-    }]
-  });
+  const { userId } = req.body;
 
-  return res.status(200).send({ userTickets });
+  const tickets = await Ticket.findAll({
+    include: {
+      association: 'User_Tickets',
+      where: {
+        toSell: true,
+        user_id: userId
+      }
+    }
+  })
+
+  if (!user) {
+    return res.status(404).send({ msg: 'User with tickets not found', status: 404 });
+  }
+
+  return res.status(200).send({ user });
 }
 
 const createUserTicket = async (req, res) => {
@@ -29,11 +35,11 @@ const createUserTicket = async (req, res) => {
 }
 
 const getUserTicketsBought = async (req, res) => {
-  userId = req.params.userId
+  const userId = req.params.userId
   const tickets = await Ticket.findAll({
     include: [{
       model: UserTickets,
-      where: [`UserTicket.user_id = ${userId}` , 'UserTicket.toSell = false'],
+      where: [`UserTicket.user_id = ${userId}`, 'UserTicket.toSell = false'],
     }]
   });
 
