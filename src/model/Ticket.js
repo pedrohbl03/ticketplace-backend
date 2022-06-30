@@ -12,6 +12,14 @@ class Ticket extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      eventName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       address: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -16,6 +16,22 @@ module.exports = {
           notEmpty: true
         }
       },
+      eventName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
+      },
+      category: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'category',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
       address: {
         type: Sequelize.STRING,
         allowNull: false,
