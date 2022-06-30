@@ -3,6 +3,11 @@ const { Model, DataTypes } = require('sequelize');
 class UserTicket extends Model {
   static init(connection) {
     super.init({
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
       user_id: {
         type: DataTypes.UUID,
       },
@@ -20,8 +25,8 @@ class UserTicket extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.User, { foreignKey:  'user_id', as: 'user'})
-    this.belongsTo(models.Ticket, {foreignKey: 'ticket_id', as: 'ticket'})
+    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' })
+    this.belongsTo(models.Ticket, { foreignKey: 'ticket_id', as: 'ticket' })
   }
 }
 

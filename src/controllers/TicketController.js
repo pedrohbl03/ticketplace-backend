@@ -1,22 +1,30 @@
 const { Op } = require("sequelize");
 const Ticket = require('../model/Ticket');
-const UserTicketsController = require('./UserTicketsController');
+const UserTickets = require('../model/UserTickets');
+
 
 
 const createTicket = async (req, res) => {
   const { address, date, ticketImage, time, value, description, userId } = req.body;
-  const ticket = await Ticket.create({
+  const { ticket, userTicket } = await Ticket.create({
     address,
     ticketImage,
     date,
     time,
     value,
     description
-  }).then(data => {
-    UserTicketsController.createUserTicket(data.ticket)
+  }).then(async (ticket) => {
+    newTicket = {
+      ticket_id: ticket.id,
+      user_id: userId,
+      toSell: true
+    }
+    const userTicket = await UserTickets.create(newTicket);
+
+    return { ticket, userTicket }
   });
 
-  return res.status(200).send({ ticket, userId });
+  return res.status(200).send({ ticket, userTicket, userId });
 }
 
 const getAllTickets = async (req, res) => {
@@ -53,8 +61,8 @@ const deleteTicketById = async (req, res) => {
   const ticket = await Ticket.delete(req.params.ticketId);
 
   return res.status(200).send({ ticket });
-}  
-    
+}
+
 module.exports = {
   createTicket,
   getAllTickets,

@@ -4,11 +4,14 @@ const UserTickets = require('../model/UserTickets');
 
 
 const getUserTicketsToSell = async (req, res) => {
-  const userTickets = await UserTickets.findAll({
-    where: {
-      userId: req.params.userId,
-      toSell: true
-    }
+  const userTickets = await Ticket.findAll({
+    include: [{
+      model: UserTickets,
+      where: {
+        user_id: req.params.userId,
+        toSell: true
+      }
+    }]
   });
 
   return res.status(200).send({ userTickets });
