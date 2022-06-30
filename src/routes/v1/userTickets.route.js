@@ -13,5 +13,9 @@ router
   .route('/bought/:userId')
   .get(auth, UserTicketsController.getUserTicketsBought)
 
+router
+  .route('/buy/:ticketId')
+  .get(auth, UserTicketsController.buyTicket)
+
 
 module.exports = router;
