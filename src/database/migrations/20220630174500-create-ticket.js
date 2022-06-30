@@ -23,8 +23,8 @@ module.exports = {
           notEmpty: true
         }
       },
-      category: {
-        type: Sequelize.STRING,
+      categoryId: {
+        type: Sequelize.INTEGER,
         references: {
           model: 'category',
           key: 'id'
