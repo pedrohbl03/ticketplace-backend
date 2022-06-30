@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const UserTickets = require('./UserTickets')
+const Ticket = require('./Ticket');
 
 class User extends Model {
   static init (connection) {
@@ -42,7 +42,7 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.hasMany(UserTickets, { foreignKey: 'user_id', as: 'User_Tickets'});
+    this.hasMany(Ticket, { foreignKey: 'userId', as: 'User_Tickets'});
   } 
 }
 

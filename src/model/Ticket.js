@@ -8,6 +8,10 @@ class Ticket extends Model {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+      userId : {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
       ticketImage: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -40,13 +44,17 @@ class Ticket extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      toSell: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
     }, {
       sequelize: connection,
     });
   }
 
   static associate(models) {
-    this.hasOne(models.UserTicket, { foreignKey: 'ticket_id', as: 'ticket_id'});
+    this.belongsTo(models.User, { foreignKey: 'userId', as: 'owner'});
   }
 }
 

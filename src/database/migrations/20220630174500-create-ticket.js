@@ -9,6 +9,14 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
+      userId: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
       ticketImage: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -87,6 +95,14 @@ module.exports = {
           },
         },
       },
+      toSell: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

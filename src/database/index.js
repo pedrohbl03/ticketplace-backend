@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const dbConfig = require('../config/database.js');
 
-const { User, Ticket, UserTickets, Category } = require('../model');
+const { User, Ticket, Category } = require('../model');
 
 const connection = new Sequelize(dbConfig)
 
@@ -15,11 +15,9 @@ connection.authenticate()
 
 User.init(connection);
 Ticket.init(connection);
-UserTickets.init(connection);
 Category.init(connection);
 
 User.associate(connection.models);
 Ticket.associate(connection.models);
-UserTickets.associate(connection.models);
 
 module.exports = connection

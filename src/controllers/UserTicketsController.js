@@ -1,64 +1,51 @@
 const Ticket = require('../model/Ticket')
 const User = require('../model/User')
-const UserTickets = require('../model/UserTickets');
 
 
 const getUserTicketsToSell = async (req, res) => {
   const { userId } = req.body;
 
-  const tickets = await Ticket.findAll({
+  const tickets = await User.findByPk(userId, {
     include: {
       association: 'User_Tickets',
       where: {
-        toSell: true,
-        user_id: userId
+        toSell: true
       }
     }
-  })
+  });
 
-  if (!user) {
-    return res.status(404).send({ msg: 'User with tickets not found', status: 404 });
+  if(!tickets) {
+    return res.status(400).send({ msg: 'No tickets found', status: 400 });
   }
 
-  return res.status(200).send({ user });
-}
+  const { id, User_Tickets } = tickets
 
-const createUserTicket = async (req, res) => {
-  const newTicket = {
-    ...req.body,
-    userId: req.params.userId
-  }
-
-  const userTicket = await UserTickets.create(newTicket);
-
-  return res.status(200).send({ userTicket });
+  return res.status(200).send({ id, User_Tickets });
 }
 
 const getUserTicketsBought = async (req, res) => {
-  const userId = req.params.userId
-  const tickets = await Ticket.findAll({
-    include: [{
-      model: UserTickets,
-      where: [`UserTicket.user_id = ${userId}`, 'UserTicket.toSell = false'],
-    }]
-  });
+  const { userId } = req.body;
 
-  return res.status(200).send({ tickets });
-}
-
-const updateUserTicketById = async (req, res) => {
-  const userTicket = await UserTickets.update(req.body, {
-    where: {
-      id: req.params.userTicketsId
+  const tickets = await User.findByPk(userId, {
+    include: {
+      association: 'User_Tickets',
+      where: {
+        toSell: false
+      }
     }
   });
 
-  return res.status(200).send({ userTicket });
+  if(!tickets) {
+    return res.status(400).send({ msg: 'No tickets found', status: 400 });
+  }
+
+  const { id, User_Tickets } = tickets
+
+  return res.status(200).send({ id, User_Tickets });
 }
+
 
 module.exports = {
   getUserTicketsToSell,
-  createUserTicket,
   getUserTicketsBought,
-  updateUserTicketById
 }

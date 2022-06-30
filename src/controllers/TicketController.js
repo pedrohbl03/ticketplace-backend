@@ -1,33 +1,28 @@
 const { Op } = require("sequelize");
 const Ticket = require('../model/Ticket');
-const UserTickets = require('../model/UserTickets');
-
 
 
 const createTicket = async (req, res) => {
-  const { eventName, address, categoryId, date, ticketImage, time, value, description, userId } = req.body;
-  console.log(req.body)
-  const { ticket, userTicket } = await Ticket.create({
-    eventName,
-    address,
-    categoryId,
+  const { userId, ticketImage, eventName, categoryId, address, date, time, value, description } = req.body;
+
+  if (!userId){
+    return res.status(400).send({ msg: 'UserId is required', status: 400 });
+  }
+
+  const ticket = await Ticket.create({
+    userId,
     ticketImage,
+    eventName,
+    categoryId,
+    address,
     date,
     time,
     value,
-    description
-  }).then(async (ticket) => {
-    const newTicket = {
-      ticket_id: ticket.id,
-      user_id: userId,
-      toSell: true
-    }
-    const userTicket = await UserTickets.create(newTicket);
+    description,
+    toSell: true
+  });
 
-    return { ticket, userTicket }
-  });    
-
-  return res.status(200).send({ ticket, userTicket, userId });
+  return res.status(200).send({ ticket });
 }
 
 const getAllTickets = async (req, res) => {
