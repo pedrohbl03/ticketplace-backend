@@ -8,7 +8,7 @@ const router = express.Router();
 router
   .route('/')
   .post(auth, TicketController.createTicket)
-  .get(TicketController.getAllTickets);
+  .get(auth, TicketController.getAllTickets);
 
 router
   .route('/:ticketId')

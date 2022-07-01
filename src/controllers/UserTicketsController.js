@@ -47,16 +47,16 @@ const getUserTicketsBought = async (req, res) => {
 const buyTicket = async (req, res) => {
   const { userId, ticketId } = req.body;
 
-  const ticket = await Ticket.update(ticketId, {
+  const ticket = await Ticket.update({
     userId: userId,
     toSell: false
-  });
+  }, { where: { id: ticketId } });
 
   if(!ticket) {
     return res.status(400).send({ msg: 'No ticket found', status: 400 });
   }
 
-  return res.status(200).send({ ticket, status: 200 });
+  return res.status(200).send({ msg: 'Ticket buy successfully', status: 200 });
 }
 
 module.exports = {

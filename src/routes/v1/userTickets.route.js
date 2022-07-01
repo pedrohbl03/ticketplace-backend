@@ -15,7 +15,7 @@ router
 
 router
   .route('/buy/:ticketId')
-  .get(auth, UserTicketsController.buyTicket)
+  .patch(auth, UserTicketsController.buyTicket)
 
 
 module.exports = router;
