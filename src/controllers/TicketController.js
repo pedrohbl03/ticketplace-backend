@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op, and } = require("sequelize");
 const { sequelize } = require("../model/Ticket");
 const Ticket = require('../model/Ticket');
 
@@ -17,7 +17,7 @@ const createTicket = async (req, res) => {
     categoryId,
     address,
     date,
-    time, 
+    time,
     value,
     description,
     toSell: true
@@ -43,6 +43,9 @@ const getTicketsByName = async (req, res) => {
     where: {
       eventName: {
         [Op.substring]: req.params.search
+      },
+      and: {
+        toSell: true
       }
     }
   });
