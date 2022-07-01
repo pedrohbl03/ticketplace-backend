@@ -14,7 +14,7 @@ class Ticket extends Model {
       },
       ticketImage: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       eventName: {
         type: DataTypes.STRING,
