@@ -34,7 +34,7 @@ const getAllTickets = async (req, res) => {
 const getTicketsByName = async (req, res) => {
   const tickets = await Ticket.findAll({
     where: {
-      address: {
+      eventName: {
         [Op.substring]: req.params.search
       }
     }
