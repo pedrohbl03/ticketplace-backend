@@ -3,6 +3,11 @@ const { Model, DataTypes } = require('sequelize');
 class Category extends Model {
   static init(connection) {
     super.init({
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       category: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -11,7 +16,6 @@ class Category extends Model {
       sequelize: connection,
     });
   }
-  // TODO: Create associated columns for user_id and ticket_id
 }
 
 module.exports = Category

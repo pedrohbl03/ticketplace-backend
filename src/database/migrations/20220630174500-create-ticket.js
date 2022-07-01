@@ -36,9 +36,7 @@ module.exports = {
         references: {
           model: 'category',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       address: {
         type: Sequelize.STRING,

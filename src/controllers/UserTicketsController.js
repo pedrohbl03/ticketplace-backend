@@ -1,6 +1,6 @@
 const Ticket = require('../model/Ticket')
 const User = require('../model/User')
-
+const Category = require('../model/Category')
 
 const getUserTicketsToSell = async (req, res) => {
   const { userId } = req.body;

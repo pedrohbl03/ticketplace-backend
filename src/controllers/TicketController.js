@@ -56,7 +56,7 @@ const updateTicketById = async (req, res) => {
 }
 
 const deleteTicketById = async (req, res) => {
-  const ticket = await Ticket.delete(req.params.ticketId);
+  const ticket = await Ticket.destroy({ where: { id: req.params.ticketId } });
 
   return res.status(200).send({ ticket });
 }
